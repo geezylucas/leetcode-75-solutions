@@ -7,15 +7,11 @@ public class CanPlaceFlowers {
             boolean next = i == flowerbed.length - 1 || flowerbed[i + 1] == 0;
 
             if (prev && next && curr) {
-                if (n > 0) {
-                    flowerbed[i] = 1;
-                    n--;
-                } else {
-                    return true;
-                }
+                flowerbed[i] = 1;
+                n--;
             }
         }
 
-        return n == 0;
+        return n <= 0;
     }
 }
