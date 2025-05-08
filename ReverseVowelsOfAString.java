@@ -4,51 +4,41 @@
  */
 public class ReverseVowelsOfAString {
 
-    public String reverseVowels(String s) {
-        char[] word = s.toCharArray();
-        int start = 0;
-        int end = s.length() - 1;
+    public static void main(String[] args) {
+        String s = "IceCreAm";
 
-        while (start < end) {
-            while (start < end && !isVowel(word[start])) {
-                start++;
+        System.out.println(reverseVowels(s));
+    }
+
+    public static String reverseVowels(String s) {
+        int i = 0;
+        int j = s.length() - 1;
+
+        char[] a = s.toCharArray();
+
+        while (i < j) {
+            while (i < j && !validateChar(a[i])) {
+                i++;
             }
 
-            while (start < end && !isVowel(word[end])) {
-                end--;
+            while (i < j && !validateChar(a[j])) {
+                j--;
             }
 
-            if (start < end) {
-                swap(word, start, end);
-                start++;
-                end--;
-            }
+            char aux = a[i];
+            a[i] = a[j];
+            a[j] = aux;
+
+            i++;
+            j--;
         }
 
-        return new String(word);
+        return String.valueOf(a);
     }
 
-    public void swap(char[] word, int start, int end) {
-        char temp = word[start];
-        word[start] = word[end];
-        word[end] = temp;
+    private static boolean validateChar(char c) {
+        return 'a' == c || 'e' == c || 'i' == c || 'o' == c || 'u' == c || 'A' == c || 'E' == c || 'I' == c || 'O' == c
+                || 'U' == c;
     }
 
-    public boolean isVowel(char c) {
-        switch (c) {
-            case 'a':
-            case 'e':
-            case 'i':
-            case 'o':
-            case 'u':
-            case 'A':
-            case 'E':
-            case 'I':
-            case 'O':
-            case 'U':
-                return true;
-            default:
-                return false;
-        }
-    }
 }
